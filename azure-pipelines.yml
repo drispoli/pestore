@@ -7,7 +7,6 @@ trigger:
 - master
 
 pool: Default
-  
 
 steps:
 
@@ -22,3 +21,19 @@ steps:
     effectivePomSkip: false
     sonarQubeRunAnalysis: false
     
+- task: FortifyScanCentralSAST@7
+  inputs:
+    scanCentralCtrlUrl: 'http://10.229.222.183:8999/scancentral-ctrl/'
+    scanCentralClientToken: '$(ScanCentral.ClientToken)'
+    sscUrl: 'http://10.229.222.183:8180/ssc'
+    sscCiToken: '$(ScanCentral.SscCiToken)'
+    uploadToSSC: true
+    applicationName: 'Petstore'
+    applicationVersion: 'v1'
+    buildFailureCriteria: '[fortify priority order]:critical'
+    timeoutForPollingArtifactState: 60
+    buildTool: 'mvn'
+    buildFile: 'pom.xml'
+    block: true
+    outputFile: 'scan.fpr'
+    overwrite: true
