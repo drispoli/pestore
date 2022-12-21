@@ -37,3 +37,9 @@ steps:
     block: true
     outputFile: 'scan.fpr'
     overwrite: true
+    
+- task: FortifyScanCentralDAST@7
+  inputs:
+    scanCentralDastApiUrl: 'http://10.229.222.165:8500/api/'
+    scanCentralCiCdToken: 'e4d66a62-211e-4478-8cad-e57f780c75bf'
+    sscCiToken: '$(ScanCentral.SscCiToken)'
