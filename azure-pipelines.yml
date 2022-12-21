@@ -30,7 +30,7 @@ steps:
     uploadToSSC: true
     applicationName: 'Petstore'
     applicationVersion: 'v1'
-    buildFailureCriteria: '[fortify priority order]:critical'
+    #buildFailureCriteria: '[fortify priority order]:critical'
     timeoutForPollingArtifactState: 60
     buildTool: 'mvn'
     buildFile: 'pom.xml'
