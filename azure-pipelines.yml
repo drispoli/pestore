@@ -41,5 +41,5 @@ steps:
 - task: FortifyScanCentralDAST@7
   inputs:
     scanCentralDastApiUrl: 'http://10.229.222.165:8500/api/'
-    scanCentralCiCdToken: '6c4fc9e1-e7a2-4c75-9459-6f9ac48a37f9'
+    scanCentralCiCdToken: 'fe70e3b3-55da-4f91-a3af-93c40fc0fb94'
     sscCiToken: '$(ScanCentral.SscCiToken)'
