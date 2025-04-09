@@ -1,0 +1,48 @@
+name: Fortify on Demand SAST Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source code
+        uses: actions/checkout@v4  
+      - name: Run Fortify on Demand SAST & SCA Scan
+        uses: fortify/github-action@v1
+        with:
+          sast-scan: true
+          debricked-sca-scan: true
+        env:
+          FOD_URL: https://ams.fortify.com
+          FOD_TENANT: ${{secrets.FOD_TENANT}}
+          FOD_USER: ${{secrets.FOD_USER}}
+          FOD_PASSWORD: ${{secrets.FOD_PAT}}
+          # FOD_CLIENT_ID: ${{secrets.FOD_CLIENT_ID}}
+          # FOD_CLIENT_SECRET: ${{secrets.FOD_CLIENT_SECRET}}
+          # FOD_LOGIN_EXTRA_OPTS: --socket-timeout=60s
+          # FOD_RELEASE: MyApp:MyRelease
+          DO_SETUP: true
+          # SETUP_ACTION: https://scm.my.org/shared-repos/fcli-actions/setup.yaml
+          # SETUP_EXTRA_OPTS: --copy-from "${{ github.repository }}:${{ github.event.repository.default_branch }}"
+          # SC_CLIENT_VERSION: 24.4
+          # DO_PACKAGE_DEBUG: true
+          P# ACKAGE_EXTRA_OPTS: -oss -bt mvn
+          # FOD_SAST_SCAN_EXTRA_OPTS:
+          # DO_WAIT: true
+          # DO_POLICY_CHECK: true
+          # POLICY_CHECK_ACTION: https://scm.my.org/shared-repos/fcli-actions/check-policy.yaml
+          # POLICY_CHECK_EXTRA_OPTS: --on-unsigned=ignore
+          # DO_JOB_SUMMARY: true
+          # JOB_SUMMARY_ACTION: https://scm.my.org/shared-repos/fcli-actions/job-summary.yaml
+          # JOB_SUMMARY_EXTRA_OPTS: --on-unsigned=ignore
+          # DO_PR_COMMENT: true
+          # PR_COMMENT_ACTION: https://scm.my.org/shared-repos/fcli-actions/github-pr-comment.yaml
+          # PR_COMMENT_EXTRA_OPTS: --on-unsigned=ignore
+          # DO_EXPORT: true
+          # EXPORT_ACTION: https://scm.my.org/shared-repos/fcli-actions/github-sast-report.yaml
+          # EXPORT_EXTRA_OPTS: --on-unsigned=ignore
+          # TOOL_DEFINITIONS: https://ftfy.mycompany.com/tool-definitions/v1/tool-definitions.yaml.zip
